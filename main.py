@@ -1,36 +1,44 @@
 class Orang:
     total_orang = 0
+
     def __init__(self, nama, nik, alamat):
         self.nama = nama
         self.__nik = nik
         self._alamat = alamat
         Orang.total_orang += 1
+
     @property
     def nik(self):
         return self.__nik
+
     @nik.setter
     def nik(self, val):
         if len(val) != 16:
             raise ValueError("NIK harus 16 digit!")
         self.__nik = val
+
     def tampilkan_info(self):
         print(f"Nama: {self.nama}, Alamat: {self._alamat}")
 
 class Pasien(Orang):
-    def __init__(self, nama, nik, alamat, no_rm, riwayat_penyakit):
+    def __init__(self, nama, nik, alamat, no_rm, riwayat_penyakit, golongan_darah):
         super().__init__(nama, nik, alamat)
         self.no_rm = no_rm
         self.riwayat_penyakit = riwayat_penyakit
+        self.golongan_darah = golongan_darah
+
     def tampilkan_info(self):
-        print(f"[Pasien] Nama: {self.nama}, Alamat: {self._alamat}, No RM: {self.no_rm}, Riwayat: {self.riwayat_penyakit}")
+        print(f"[Pasien] Nama: {self.nama}, Alamat: {self._alamat}, No RM: {self.no_rm}, Riwayat: {self.riwayat_penyakit}, Gol. Darah: {self.golongan_darah}")
 
 class Dokter(Orang):
-    def __init__(self, nama, nik, alamat, id_dokter, spesialisasi):
+    def __init__(self, nama, nik, alamat, id_dokter, spesialisasi, status_kerja):
         super().__init__(nama, nik, alamat)
         self.id_dokter = id_dokter
         self.spesialisasi = spesialisasi
+        self.status_kerja = status_kerja
+
     def tampilkan_info(self):
-        print(f"[Dokter] Dr. {self.nama}, Spesialis: {self.spesialisasi}, ID: {self.id_dokter}, Alamat: {self._alamat}")
+        print(f"[Dokter] {self.nama}, Spesialis: {self.spesialisasi}, ID: {self.id_dokter}, Status: {self.status_kerja}, Alamat: {self._alamat}")
 
 class RekamMedis:
     def __init__(self, tanggal, diagnosa):
@@ -41,8 +49,10 @@ class Klinik:
     def __init__(self, nama_klinik):
         self.nama_klinik = nama_klinik
         self.daftar_dokter = []
+
     def tambah_dokter(self, dokter):
         self.daftar_dokter.append(dokter)
+
     def info_klinik(self):
         print(f"\n--- Informasi Klinik: {self.nama_klinik} ---")
         print("Daftar Dokter yang Bertugas:")
@@ -51,14 +61,19 @@ class Klinik:
 
 if __name__ == "__main__":
     print("=== PENGUJIAN SISTEM KLINIK OOP ===")
-    pasien1 = Pasien("Budi Santoso", "3201123456789012", "Jl. Merdeka No. 10", "RM001", "Demam Berdarah")
-    dokter1 = Dokter("Andi", "3201987654321098", "Jl. Sehat No. 5", "DOC001", "Umum")
+    p1 = Pasien("Andi", "6471012345678901", "Jl. Mulawarman", "RM-001", "Demam Berdarah", "O")
+    p2 = Pasien("Siti", "6471098765432109", "Jl. A. Yani", "RM-002", "Tipes", "A")
+    d1 = Dokter("Dr. Budi", "6471111111111111", "Jl. P. Antasari", "DOC-101", "Penyakit Dalam", "Tetap")
+    d2 = Dokter("Dr. Dewi", "6471222222222222", "Jl. Lambung Mangkurat", "DOC-102", "Anak", "Kontrak")
     print("\n--- Uji Method Overriding ---")
-    pasien1.tampilkan_info()
-    dokter1.tampilkan_info()
+    p1.tampilkan_info()
+    p2.tampilkan_info()
+    d1.tampilkan_info()
+    d2.tampilkan_info()
     klinik_sehat = Klinik("Klinik Sehat Bersama")
-    klinik_sehat.tambah_dokter(dokter1)
+    klinik_sehat.tambah_dokter(d1)
+    klinik_sehat.tambah_dokter(d2)
     klinik_sehat.info_klinik()
     print("\n--- Uji Rekam Medis (Komposisi) ---")
     rm = RekamMedis("2026-10-07", "Infeksi saluran pernapasan ringan")
-    print(f"Pasien {pasien1.nama} dengan No RM {pasien1.no_rm} mendapat diagnosa: {rm.diagnosa} pada tanggal {rm.tanggal}.")
+    print(f"Pasien {p1.nama} dengan No RM {p1.no_rm} mendapat diagnosa: {rm.diagnosa} pada tanggal {rm.tanggal}.")
