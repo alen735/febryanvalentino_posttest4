@@ -25,8 +25,3 @@ Spesifikasi Entitas dan Data Uji
 - Entitas Dokter: 
   1. Dr. Budi (NIK: 6471111111111111, Alamat: Jl. P. Antasari)
   2. Dr. Dewi (NIK: 6471222222222222, Alamat: Jl. Lambung Mangkurat)
-
-Petunjuk Eksekusi Program
-Pastikan lingkungan eksekusi Python telah terpasang pada perangkat Anda. Jalankan perintah berikut melalui terminal atau baris perintah:
-
-python main.py
