@@ -1,8 +1,5 @@
 Laporan Praktikum Pemrograman Berorientasi Objek
 
-Nama  : Febryan Valentino Putra
-Nim   : 2509106094
-
 Implementasi OOP Lanjutan (Inheritance, Overriding, Encapsulation, dan Relasi Objek)
 
 Abstraksi Program
